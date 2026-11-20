@@ -2,7 +2,7 @@
 
 A Streamlit dashboard. Paste a public GitHub repository and get its key facts, a checklist of good project practices, and an AI-written analysis with a summary, strengths, at least three improvement recommendations and ways to contribute.
 
-**Live demo:** [LIVE_URL]
+**Live demo:** [https://yesha-repo-analyzer.streamlit.app/]
 
 The analysis runs fully on your own machine with [Ollama](https://ollama.com) (`qwen3`). The public demo cannot reach a local Ollama, so it uses Groq's free tier instead. The switch is one environment variable, no code change.
 
