@@ -1,110 +1,49 @@
-# Ghanex Tech – GenAI & Open-Source Developer Intern Assessment
+# Ghanex Tech Technical Assessment – Yesha Jagad
 
-This repository contains the technical assessment for the **GenAI and Open-Source Developer Intern** role at [Ghanex Tech](https://ghanextech.com/).
+GenAI & Open-Source Developer Intern assessment. Three working applications, each with its own README, tests and live demo, in one repository.
 
----
+| Task | What it is | Live demo | Code |
+|---|---|---|---|
+| 1 | **AI Document Assistant (RAG).** Upload PDFs or text files and ask questions. Answers are streamed with page citations. | [https://yesha-rag-assistant.streamlit.app/] | [`task1-rag`](task1-rag) |
+| 2 | **AI Agent with tool calling.** Chat with an agent that chooses between a calculator, weather and Wikipedia, and shows which tool it used. | [https://yesha-ai-agent.streamlit.app/] | [`task2-agent`](task2-agent) |
+| 3A | **GitHub Repository Analyzer.** Paste a public repo and get facts, a checklist and an AI analysis with recommendations. | [https://yesha-repo-analyzer.streamlit.app/] | [`task3-analyzer`](task3-analyzer) |
+| 3B | **Open-source contribution.** | [https://github.com/ollama/ollama-python/issues/803] | See [SUBMISSION.md](SUBMISSION.md) |
 
-## About the Role
+Submission details, including how AI tools were used, are in [SUBMISSION.md](SUBMISSION.md).
 
-**Position:** GenAI & Open-Source Developer Intern  
-**Duration:** 3 months  
-**Mode:** Fully remote  
-**Stipend:** Performance-based (discussed during the selection process)  
-**Experience level:** Freshers are welcome
+## How the three apps are built
 
----
+- **Python and Streamlit** for all three.
+- **Ollama locally, Groq when deployed.** The apps run fully offline on local models (`bge-m3`, `llama3.2`, `qwen3:4b`). Free hosting cannot reach a local Ollama, so the live demos switch to Groq (and a small embedding model for Task 1) with one environment variable and no code change.
+- **No secrets in the repository.** Each task has a `.env.example`, and the live demos read their keys from the hosting platform's secrets.
+- **Tests that need no network or model.** Fake models and fake web responses are used, and GitHub Actions runs each task's tests on every push.
+- **Friendly errors.** Every failure a user can cause (bad input, model off, rate limit, missing file) shows a clear message instead of a crash.
 
-## Purpose of This Assessment
+## Repository layout
 
-We use this assessment to identify candidates who can build, understand, debug, and deploy real software — not just generate code with AI tools.
+```
+.github/workflows/ci.yml   tests for all three tasks
+task1-rag/                 Task 1: README, app.py, rag/, tests/
+task2-agent/               Task 2: README, app.py, agent/, tests/
+task3-analyzer/            Task 3: README, app.py, analyzer/, tests/
+SUBMISSION.md              filled submission form
+```
 
-You will work with Python, LLMs, vector search, REST APIs, and GitHub. The tasks are intentionally practical: each one maps to work you would actually do during the internship.
+## Run any task locally
 
-We want to see how you structure a project, handle edge cases, write readable code, and communicate your design decisions. AI coding tools are allowed, but you must own and understand everything you submit.
+You need Python 3.10 or newer and [Ollama](https://ollama.com).
 
----
+```bash
+ollama pull bge-m3 && ollama pull llama3.2 && ollama pull qwen3
 
-## Assessment Structure
+git clone https://github.com/Yeshajagad/ghanextech-technical-assessment.git
+cd ghanextech-technical-assessment/task1-rag        # or task2-agent, or task3-analyzer
 
-The assessment consists of three independent tasks. All three must be completed and deployed within **3 to 5 days**.
+python -m venv .venv
+source .venv/bin/activate                            # Windows: .venv\Scripts\activate
+pip install -r requirements-local.txt
+cp .env.example .env
+streamlit run app.py
+```
 
-| Task | Description | File |
-|------|-------------|------|
-| Task 1 | AI Document Assistant using Retrieval-Augmented Generation | [TASK-01-RAG.md](./TASK-01-RAG.md) |
-| Task 2 | AI Agent with Tool Calling | [TASK-02-AI-AGENT.md](./TASK-02-AI-AGENT.md) |
-| Task 3 | GitHub Repository AI Analyzer + Open-Source Contribution | [TASK-03-GITHUB-ANALYZER.md](./TASK-03-GITHUB-ANALYZER.md) |
-
-Read each task file carefully before beginning.
-
----
-
-## Technology
-
-There is no mandatory stack. The suggestions below are based on what works well and what is free to use.
-
-- **Language:** Python 3.10+
-- **LLMs:** Google Gemini API (free tier), Groq API (free tier), or locally hosted models via Ollama
-- **Frameworks:** LangChain, LlamaIndex, or plain Python
-- **Vector databases:** FAISS, ChromaDB
-- **UI:** Streamlit, Gradio, or FastAPI
-- **APIs:** GitHub REST API, Open-Meteo, DuckDuckGo Search, Wikipedia API
-
-None of the tasks require paid APIs or paid hosting. If you choose a service with a free tier, document any rate limits or constraints.
-
----
-
-## Deployment
-
-Deploy each project on a free hosting platform:
-
-- [Streamlit Community Cloud](https://streamlit.io/cloud)
-- [Hugging Face Spaces](https://huggingface.co/spaces)
-- Any other free platform you prefer
-
-Each deployed app must be accessible via a public URL. If a deployment is temporarily unavailable, document the issue and include clear local setup instructions so the application can be verified locally.
-
-**Do not commit API keys, tokens, or any secrets to your repository.** Use environment variables or the secrets management provided by your hosting platform.
-
----
-
-## AI Tool Policy
-
-You may use AI assistants (ChatGPT, Claude, Gemini, Copilot, Cursor, or others) during this assessment. Use them as development aids — for looking up syntax, drafting initial code, or debugging.
-
-Before submitting:
-
-- Review and test every part of the code yourself.
-- Refactor AI-generated code to fit a coherent structure and style.
-- Write your own documentation that accurately describes what the application does.
-- Remove generic boilerplate, placeholder comments, and anything you do not understand.
-
-Shortlisted candidates will be asked to explain their implementation, make a small modification, or debug a specific part during the interview. If you cannot walk through your own submission, that is a problem.
-
-Please disclose which AI tools you used and how in the submission form.
-
----
-
-## GitHub Instructions
-
-1. **Fork this repository** to your personal GitHub account.
-2. Create one repository per task, or organize all three in a single well-structured repository.
-3. Make regular commits with clear, descriptive commit messages throughout development — not one large commit at the end.
-4. Keep all repositories **public** until your evaluation is complete.
-
-Do not push directly to this repository.
-
----
-
-## Submission
-
-Fill out the submission template in [SUBMISSION.md](./SUBMISSION.md) and send it as instructed by the recruitment team.
-
-Submissions with broken links, inaccessible repositories, or incomplete sections may not be considered for further evaluation.
-
----
-
-## Questions
-
-If something in the assessment is unclear, raise a GitHub issue in this repository or contact the team through the official recruitment channel.
-
-Good luck.
+Each task's README lists the models it needs, an architecture diagram, design choices and known limitations.
