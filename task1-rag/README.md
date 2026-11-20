@@ -43,7 +43,7 @@ The app runs fully on your own machine with [Ollama](https://ollama.com) (`bge-m
 | Chunks per page | Never cross a page | Keeps the page number in each citation correct. The cost is that an idea running over a page break is split. |
 | Embedding model | `bge-m3` (Ollama), 1024 dimensions | Strong multilingual retrieval model, runs locally with no API key, handles long input. The deployed demo uses `all-MiniLM-L6-v2` (384 dimensions) through `fastembed` because it is small enough for free hosting. |
 | Vector store | FAISS `IndexFlatIP` on normalised vectors | Inner product on unit vectors is cosine similarity. A flat index is exact, and for a few thousand chunks it is instant, so an approximate index would add complexity for nothing. |
-| LLM | `llama3.2` (Ollama) | Small (2 GB), fast on a laptop, and follows "answer only from the context" well enough for this task. Set `OLLAMA_CHAT_MODEL=qwen3` for a larger model. The deployed demo uses Llama 3.3 70B on Groq's free tier. |
+| LLM | `llama3.2` (Ollama) | Small (2 GB), fast on a laptop, and follows "answer only from the context" well enough for this task. Set `OLLAMA_CHAT_MODEL=qwen3` for a larger model. The deployed demo uses OpenAI GPT-OSS 120B through Groq. |
 | Framework | Plain Python, no LangChain | The pipeline is short enough to read in one sitting, and every step is visible. |
 
 ## Run it locally

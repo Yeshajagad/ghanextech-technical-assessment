@@ -23,5 +23,5 @@ OLLAMA_TIMEOUT = 180  # seconds; a 3B model on CPU can be slow
 
 # Cloud options used only by the deployed demo
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 MINILM_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
