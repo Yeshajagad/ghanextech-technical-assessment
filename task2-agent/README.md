@@ -2,7 +2,7 @@
 
 A Streamlit chat app where an AI agent decides, for each message, whether to answer directly or to use a tool first. It remembers the conversation, shows which tools it used and what they returned, and keeps working when a tool fails.
 
-**Live demo:** [LIVE_URL]
+**Live demo:** [https://yesha-ai-agent.streamlit.app/]
 
 The agent runs fully on your own machine with [Ollama](https://ollama.com) (`qwen3:4b`). The public demo cannot reach a local Ollama, so it uses Groq's free tier instead. The switch is one environment variable, no code change.
 
