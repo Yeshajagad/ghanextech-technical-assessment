@@ -26,12 +26,14 @@ def test_name_with_tag_must_match_exactly():
 
 
 def test_no_problems_when_the_model_is_installed():
-    assert ollama_problems(FakeClient(names=["qwen3:latest"])) == []
+    assert ollama_problems(FakeClient(names=["qwen3:4b"])) == []
 
 
 def test_missing_model_is_reported_with_pull_command():
     problems = ollama_problems(FakeClient(names=["llama3.2:latest"]))
-    assert problems == ["Model 'qwen3' is missing. Run: ollama pull qwen3"]
+    assert problems == [
+        "Model 'qwen3:4b' is missing. Run: ollama pull qwen3:4b"
+    ]
 
 
 def test_ollama_not_running_is_reported():
