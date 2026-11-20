@@ -19,7 +19,7 @@ OLLAMA_TIMEOUT = 180  # seconds; a local model on CPU can be slow
 
 # Groq (used only by the deployed demo)
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 # Agent behaviour
 MAX_STEPS = 5  # most model calls for one question, so a confused model cannot loop forever
