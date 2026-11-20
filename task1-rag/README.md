@@ -2,7 +2,7 @@
 
 A Streamlit app where you upload PDFs and ask questions about them. Answers are generated only from the text of the uploaded files, and every answer shows the passages it was based on.
 
-**Live demo:** [LIVE_URL]
+**Live demo:** [(https://yesha-rag-assistant.streamlit.app/)]
 
 The app runs fully on your own machine with [Ollama](https://ollama.com) (`bge-m3` for embeddings, `llama3.2` for answers). The public demo cannot reach a local Ollama, so it uses Groq's free tier for answers and a small embedding model instead. The switch is two environment variables, no code change.
 
