@@ -1,0 +1,6 @@
+streamlit==1.67.0
+pypdf==6.17.0
+faiss-cpu==1.16.0
+numpy==2.5.3
+ollama==0.6.3
+python-dotenv==1.2.3
